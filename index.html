@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Verification</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .main-conatiner{
+            box-shadow: 0 0 2px rgb(246, 244, 244);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: antiquewhite;
+        }
+        #passwordField{
+            font-size: 16px;
+            font-weight: 500;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        label{
+            font-size: 24px;
+            font-weight: 500;
+            padding: 5px;
+        }
+        #passwordcheck{
+            text-align: center;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-conatiner">
+        <label for="passwordField">Password:</label>
+        <input type="password" placeholder="Enter Your Password" id="passwordField" required><br><br>
+        <span id="passwordcheck"></span>
+    </div> 
+    <script>
+         let inputfield = document.getElementById('passwordField');
+        let passwordcheck = document.getElementById('passwordcheck');
+
+        inputfield.addEventListener('input', () => {
+            let inputValue = inputfield.value;
+            // console.log(inputValue); 
+            if(inputfield.value.length < 8){
+                passwordcheck.innerText="Password is weak";
+                passwordcheck.style.color ='red';
+            }
+            else{
+                if(inputValue.search(/[a-z]/) == -1){
+                    passwordcheck.innerText="Lowercase is Missing!";
+                    passwordcheck.style.color ='red';
+                }
+                else if(inputValue.search(/[A-Z]/) == -1){
+                    passwordcheck.innerText="Uppercase is Missing!";
+                    passwordcheck.style.color ='red';
+                }
+
+                else if(inputValue.search(/[0-9]/) == -1){
+                    passwordcheck.innerText="Number is Missing!";
+                    passwordcheck.style.color ='red';
+                }
+                else if(inputValue.search(/[!@#$%^&*(),.?":{}|<>]/) == -1){
+                    passwordcheck.innerText="Special Character is Missing!";
+                    passwordcheck.style.color ='red';
+                }
+                else{
+                    passwordcheck.innerText="Password is Strong";
+                    passwordcheck.style.color ='green';
+                }
+            }
+        });
+    </script>  
+</body>
+</html>
